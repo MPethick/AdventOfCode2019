@@ -6,7 +6,9 @@
     "@types/file-saver": "^2.0.1"
   },
   "scripts": {
-    "start": "tsc day1.ts && node day1.js"
+    "build": "tsc",
+    "run": "node build/day1.js",
+    "start": "tsc && node build/day1.js"
   },
   "eslintConfig": {
     "extends": "day-01"

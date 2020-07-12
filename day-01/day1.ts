@@ -1,3 +1,4 @@
+// Define imports
 import * as fs from "fs";
 
 // Define variables
