@@ -17,6 +17,6 @@ You will see completion messages in the console when the JavaScript code has bee
 
 ### `yarn start`
 
-This combines the `yarn build` and `yarn run` commands into a single each to use command.
+This combines the `yarn build` and `yarn run` commands into a single easy to use command.
 
 You will see completion messages in the console once the code has been transpiled and successfully ran.
