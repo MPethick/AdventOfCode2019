@@ -1,0 +1,19 @@
+{
+  "name": "day-2",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/file-saver": "^2.0.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "run": "node build/day2.js",
+    "start": "tsc && node build/day2.js"
+  },
+  "eslintConfig": {
+    "extends": "day-02"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.22"
+  }
+}
