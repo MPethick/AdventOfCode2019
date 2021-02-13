@@ -7,8 +7,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "run": "node build/day1.js",
-    "start": "tsc && node build/day1.js"
+    "start": "node build/day2.js",
+    "complete": "tsc && node build/day2.js"
   },
   "eslintConfig": {
     "extends": "day-01"
