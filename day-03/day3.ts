@@ -67,7 +67,7 @@ function calcuateWirePath(previousCoordinate: Coordinate, rowValue: string) {
           longitude: previousCoordinate.longitude,
         });
         break;
-      // When an 'L' is detected, ensure the wire goes positively along the y-axis
+      // When an 'U' is detected, ensure the wire goes positively along the y-axis
       case "U":
         newCoordinates.push({
           latitude: previousCoordinate.latitude,
