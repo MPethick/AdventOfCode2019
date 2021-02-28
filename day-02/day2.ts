@@ -106,7 +106,7 @@ console.log(
    the program is ${answerPartTwo.output}.`
 );
 
-// Calculte (100 * noun) + verb
+// Calclute (100 * noun) + verb
 answerPartTwo.calculation = 100 * answerPartTwo.noun + answerPartTwo.verb;
 
 // print answer to  (100 * noun) + verb
