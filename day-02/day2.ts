@@ -18,16 +18,16 @@ let answerPartTwo: AnswerPartTwo = {
   calculation: 0,
 };
 
-// Import the text file into a string and then split each row into a seperate array element
+// Import the text file into a string and then split each number into a seperate string array element
 let textFile: Array<string> = fs
   .readFileSync(filename, "utf8")
   .toString()
   .split(",");
 
-// Remove the carriage return (\r) present in the elements and then convert the elements into integers
+// Parse the string array into an integer array
 textFile.forEach(
   (rowValue, index) =>
-    (memoryArray[index] = parseInt(rowValue.replace("\r", "")))
+    (memoryArray[index] = parseInt(rowValue))
 );
 
 ///////////////////////
