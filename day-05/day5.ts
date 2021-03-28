@@ -24,7 +24,7 @@ textFile.forEach(
 
 // Function which decodes the intcode program using the passed noun and verb values and returns the output
 // (the value from position 0 in intcode after the program is run)
-function intcodeComputer(inputValue: number) {
+function intcodeComputer(inputValue: number) : number | undefined {
   // Define array to hold intcode program from the memory
   let gravityArray: Array<number> = [];
   let opcode: string = "";
