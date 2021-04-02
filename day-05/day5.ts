@@ -34,7 +34,7 @@ function intcodeComputer(inputValue: number) : number | undefined {
 
   // Loop through the intcode instructions until an exit opcode ('99') is detected. An instruction is formatted
   // as follows: The first value is the opcode, the second two values are the positions of the two inputs, and
-  // the fourth value is the position of the output.
+  // the fourth value is the position of the output
   for (let i: number = 0; gravityArray[i] !== 99; i += 2) {
     // Convert the current opcode to a string to allow for the identification of its parameters
     opcode = gravityArray[i].toString();
