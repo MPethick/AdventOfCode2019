@@ -1,9 +1,10 @@
 // Function which decodes the intcode program using the passed noun and verb values and returns the output
 // (the value from position 0 in intcode after the program is run)
-export function intcodeComputer(inputValue: number, memoryArray: Array<number>) : number | undefined {
+export function intcodeComputer(firstInputValue: number, secondInputValue: number, memoryArray: Array<number>) : number | undefined {
     // Define array to hold intcode program from the memory
     let gravityArray: Array<number> = [];
     let opcode: string = "";
+    let firstInputFlag: boolean = false;
   
     // Assign corresponding intcode program from the memory
     gravityArray = memoryArray.slice();
@@ -50,7 +51,13 @@ export function intcodeComputer(inputValue: number, memoryArray: Array<number>) 
           break;
         // When an opcode '3' is detected, perform an input
         case "3":
-          gravityArray[gravityArray[i + 1]] = inputValue;
+          if(! firstInputFlag) {
+            gravityArray[gravityArray[i + 1]] = firstInputValue;  
+            firstInputFlag = true;          
+          } else {
+            gravityArray[gravityArray[i + 1]] = secondInputValue;  
+          }
+
           break;
         // When an opcode '4' is detected, perform an output
         case "4":
