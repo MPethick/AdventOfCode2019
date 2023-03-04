@@ -1,10 +1,10 @@
 // Function which decodes the intcode program using the passed noun and verb values and returns the output
 // (the value from position 0 in intcode after the program is run)
-export function intcodeComputer(firstInputValue: number, secondInputValue: number, memoryArray: Array<number>) : number | undefined {
+export function intcodeComputer(firstInputValue: number, secondInputValue: number, startPosition: number, memoryArray: Array<number>) : [number | undefined, number] {
     // Define array to hold intcode program from the memory
     let gravityArray: Array<number> = [];
     let opcode: string = "";
-    let firstInputFlag: boolean = false;
+    let firstInputFlag: boolean = true;
   
     // Assign corresponding intcode program from the memory
     gravityArray = memoryArray.slice();
@@ -12,7 +12,7 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
     // Loop through the intcode instructions until an exit opcode ('99') is detected. An instruction is formatted
     // as follows: The first value is the opcode, the second two values are the positions of the two inputs, and
     // the fourth value is the position of the output
-    for (let i: number = 0; gravityArray[i] !== 99; i += 2) {
+    for (let i: number = 0 + startPosition; gravityArray[i] !== 99; i += 2) {
       // Convert the current opcode to a string to allow for the identification of its parameters
       opcode = gravityArray[i].toString();
   
@@ -51,9 +51,8 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
           break;
         // When an opcode '3' is detected, perform an input
         case "3":
-          if(! firstInputFlag) {
-            gravityArray[gravityArray[i + 1]] = firstInputValue;  
-            firstInputFlag = true;          
+          if(firstInputFlag) {
+            gravityArray[gravityArray[i + 1]] = firstInputValue;    
           } else {
             gravityArray[gravityArray[i + 1]] = secondInputValue;  
           }
@@ -63,9 +62,9 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
         case "4":
           // Return the diagnostic code if the value output is not equal to 0
           if (parameterOne !== 0) {
-            return parameterOne;
+            return [parameterOne, i];
           }
-          console.log(`An output of ${parameterOne} was detected at ${i}`);
+          ////console.log(`An output of ${parameterOne} was detected at ${i}`);
           break;
         // When an opcode '5' is detected, perform a jump-if-true
         case "5":
@@ -97,7 +96,7 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
         // When an opcode '9' is detected, check if its an exit code and if it is not, throw an error
         case "9":
           if (opcode[opcode.length - 2] === "9") {
-            return undefined;
+            return [undefined, -1];
           } else {
             throw new Error(
               `A non-valid Opcode of ${opcode} was detected at position ${i}`
@@ -109,8 +108,9 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
             `A non-valid Opcode of ${opcode} was detected at position ${i}`
           );
       }
+      firstInputFlag = false;        
     }
   
     // Return an undefined if no diagonostic code is found
-    return undefined;
+    return [undefined, -1];
   }

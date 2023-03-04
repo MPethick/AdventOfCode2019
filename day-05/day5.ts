@@ -24,7 +24,7 @@ textFile.forEach(
 ///////////////////////
 
 // Calculate the output of the intcode program when an input value of 1 is used
-answerPartOne = intcodeComputer(1, 1, textArray);
+[answerPartOne, ] = intcodeComputer(1, 1, 0, textArray);
 
 // Print the diagnostic code of the intcode program when an input 1 is used
 console.log(
@@ -36,7 +36,7 @@ console.log(
 ///////////////////////
 
 // Calculate the output of the intcode program when an input value of 5 is used
-answerPartTwo = intcodeComputer(5, 5, textArray);
+[answerPartTwo, ] = intcodeComputer(5, 5, 0, textArray);
 
 // Print the diagnostic code of the intcode program when an input 5 is used
 console.log(
