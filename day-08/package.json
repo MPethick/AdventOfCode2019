@@ -1,0 +1,19 @@
+{
+  "name": "day-8",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/file-saver": "^2.0.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/day8.js",
+    "complete": "tsc && node build/day8.js"
+  },
+  "eslintConfig": {
+    "extends": "day-08"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.22"
+  }
+}
