@@ -1,18 +1,30 @@
 // Function which decodes the intcode program using the passed noun and verb values and returns the output
+
+import { start } from "repl";
+
 // (the value from position 0 in intcode after the program is run)
 export function intcodeComputer(firstInputValue: number, secondInputValue: number, startPosition: number, memoryArray: Array<number>) : [number | undefined, number] {
     // Define array to hold intcode program from the memory
     let gravityArray: Array<number> = [];
     let opcode: string = "";
     let firstInputFlag: boolean = true;
+    let basicOperationFlag: boolean = false;
   
     // Assign corresponding intcode program from the memory
     gravityArray = memoryArray.slice();
+
+    // Write in the input values to the first available positions and signals to output the value of position 0 at an exit code (this is required for the initial day 2 operation of the intcode)
+    if(startPosition == -1) {
+      basicOperationFlag = true;
+      startPosition = 0;
+      gravityArray[1] = firstInputValue;    
+      gravityArray[2] = secondInputValue;  
+    }
   
     // Loop through the intcode instructions until an exit opcode ('99') is detected. An instruction is formatted
     // as follows: The first value is the opcode, the second two values are the positions of the two inputs, and
     // the fourth value is the position of the output
-    for (let i: number = 0 + startPosition; gravityArray[i] !== 99; i += 2) {
+    loop: for (let i: number = 0 + startPosition; gravityArray[i] !== 99; i += 2) {
       // Convert the current opcode to a string to allow for the identification of its parameters
       opcode = gravityArray[i].toString();
   
@@ -24,16 +36,16 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
       // A B C D E
       //   1 0 0 2
       // DE - two-digit opcode,      02 = opcode 2
-      // C  - mode of 1st parameter,  1 = position mode
-      // B  - mode of 2nd parameter,  0 = immediate mode
+      // C  - mode of 1st parameter,  0 = position mode
+      // B  - mode of 2nd parameter,  1 = immediate mode
       // A  - mode of 3rd parameter,  0 = position mode, omitted due to being a leading zero
       //
       let parameterOne: number =
-        opcode[opcode.length - 3] === "1"
+        (opcode.length >= 3 || opcode[opcode.length - 3] === "1")
           ? gravityArray[i + 1]
           : gravityArray[gravityArray[i + 1]];
       let parameterTwo: number =
-        opcode[opcode.length - 4] === "1"
+        (opcode.length >= 4 || opcode[opcode.length - 4] === "1")
           ? gravityArray[i + 2]
           : gravityArray[gravityArray[i + 2]];
   
@@ -96,7 +108,9 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
         // When an opcode '9' is detected, check if its an exit code and if it is not, throw an error
         case "9":
           if (opcode[opcode.length - 2] === "9") {
-            return [undefined, -1];
+            console.log(gravityArray[0]);
+            // Breaks out of the for loop instead of the switch statement
+            break loop;
           } else {
             throw new Error(
               `A non-valid Opcode of ${opcode} was detected at position ${i}`
@@ -112,5 +126,5 @@ export function intcodeComputer(firstInputValue: number, secondInputValue: numbe
     }
   
     // Return an undefined if no diagonostic code is found
-    return [undefined, -1];
+    return [(basicOperationFlag ? gravityArray[0] : undefined), -1];
   }

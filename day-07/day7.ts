@@ -1,7 +1,7 @@
 // Define imports
 import { Console } from "console";
 import * as fs from "fs";
-import { intcodeComputer } from "../day-05/intcodeComputer"
+import { intcodeComputer } from "../day-02/intcodeComputer"
 import { permutation } from "./permutation";
 
 // Define variables

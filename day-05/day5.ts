@@ -1,6 +1,6 @@
 // Define imports
 import * as fs from "fs";
-import { intcodeComputer } from "./intcodeComputer";
+import { intcodeComputer } from "../day-02/intcodeComputer";
 
 // Define variables
 const filename: string = "./day5.txt";
