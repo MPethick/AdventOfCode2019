@@ -74,7 +74,7 @@ textFile.forEach(
 // }
 
 // Calculate the output of the intcode program when an input of noun = 12 and verb = 2 are used
-[answerPartOne, ] = intcodeComputer(12, 2, -1, textArray);
+[[answerPartOne, ]] = intcodeComputer(12, 2, -1, textArray);
 
 // Print the output of the intcode program when an input of noun = 12 and verb = 2 are used
 console.log(
@@ -93,7 +93,7 @@ for (let noun: number = 1; answerPartTwo.output !== 19690720; noun++) {
     verb < 100 && answerPartTwo.output !== 19690720;
     verb++
   ) {
-    [output, ] = intcodeComputer(noun, verb, -1, textArray);
+    [[output, ]] = intcodeComputer(noun, verb, -1, textArray);
 
     answerPartTwo = {
       output: output,

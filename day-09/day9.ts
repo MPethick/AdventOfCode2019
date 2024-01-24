@@ -3,7 +3,7 @@ import * as fs from "fs";
 import { intcodeComputer } from "../day-02/intcodeComputer";
 
 // Define variables
-const filename: string = "./day5.txt";
+const filename: string = "./day9.txt";
 let textArray: Array<number> = [];
 let answerPartOne: number | undefined;
 let answerPartTwo: number | undefined;
@@ -15,9 +15,7 @@ let textFile: Array<string> = fs
   .split(",");
 
 // Parse the string array into an integer array
-textFile.forEach(
-  (rowValue, index) => (textArray[index] = parseInt(rowValue))
-);
+textFile.forEach((rowValue, index) => (textArray[index] = parseInt(rowValue)));
 
 ///////////////////////
 // Part 1 of exercise
@@ -26,19 +24,19 @@ textFile.forEach(
 // Calculate the output of the intcode program when an input value of 1 is used
 [[answerPartOne, ]] = intcodeComputer(1, 1, 0, textArray);
 
-// Print the diagnostic code of the intcode program when an input 1 is used
+// Print the BOOST keycode of the intcode program when an input 1 is used
 console.log(
-  `The diagnostic code after executing the program with input value of 1 is ${answerPartOne}.`
+  `The BOOST keycode after executing the program with input value of 1 is ${answerPartOne}.`
 );
 
 ///////////////////////
 // Part 2 of exercise
 ///////////////////////
 
-// Calculate the output of the intcode program when an input value of 5 is used
-[[answerPartTwo, ]] = intcodeComputer(5, 5, 0, textArray);
+// Calculate the output of the intcode program when an input value of 2 is used
+[[answerPartTwo, ]] = intcodeComputer(2, 2, 0, textArray);
 
-// Print the diagnostic code of the intcode program when an input 5 is used
+// Print the BOOST keycode of the intcode program when an input 2 is used
 console.log(
-  `The diagnostic code after executing the program with input value of 5 is ${answerPartTwo}.`
+  `The BOOST keycode after executing the program with input value of 5 is ${answerPartTwo}.`
 );

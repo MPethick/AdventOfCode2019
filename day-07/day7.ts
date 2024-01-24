@@ -48,11 +48,11 @@ amplifierConfigruationsPartOne = permutation([0,1,2,3,4])
 
 // Calculate the output of the amplifier chain for each possible permutation
 amplifierConfigruationsPartOne.forEach((currentConfigruation, index) => {
-  [amplifierA, ] = intcodeComputer(currentConfigruation[0], 0, 0, textArray) as [number, number];
-  [amplifierB, ] = intcodeComputer(currentConfigruation[1], amplifierA, 0, textArray) as [number, number];
-  [amplifierC, ] = intcodeComputer(currentConfigruation[2], amplifierB, 0, textArray) as [number, number];
-  [amplifierD, ] = intcodeComputer(currentConfigruation[3], amplifierC, 0, textArray) as [number, number];
-  [amplifierE, ] = intcodeComputer(currentConfigruation[4], amplifierD, 0, textArray) as [number, number];
+  [[amplifierA, ]] = intcodeComputer(currentConfigruation[0], 0, 0, textArray) as Array<[number, number]>;
+  [[amplifierB, ]] = intcodeComputer(currentConfigruation[1], amplifierA, 0, textArray) as Array<[number, number]>;
+  [[amplifierC, ]] = intcodeComputer(currentConfigruation[2], amplifierB, 0, textArray) as Array<[number, number]>;
+  [[amplifierD, ]] = intcodeComputer(currentConfigruation[3], amplifierC, 0, textArray) as Array<[number, number]>;
+  [[amplifierE, ]] = intcodeComputer(currentConfigruation[4], amplifierD, 0, textArray) as Array<[number, number]>;
   if (Number.isInteger(amplifierE)) {
     amplifierOutputsPartOne[index] = amplifierE;
   } else {
@@ -94,18 +94,18 @@ amplifierConfigruationsPartTwo = permutation([5,6,7,8,9])
     // Provide each amplifier its phase setting at its first input instruction and then use all further inputs instructions as the previous amplifiers output.
     // Also, remember the position that the amplifier reaches in the software to ensure it restarts from the sme location instead of resetting to the start.
     if (firstLoopFlag) {
-      [amplifierA, currentPositionA] = intcodeComputer(currentConfigruation[0], 0, currentPositionA, textArray) as [number, number];
-      [amplifierB, currentPositionB] = intcodeComputer(currentConfigruation[1], amplifierA, currentPositionB, textArray) as [number, number];
-      [amplifierC, currentPositionC] = intcodeComputer(currentConfigruation[2], amplifierB, currentPositionC, textArray) as [number, number];
-      [amplifierD, currentPositionD] = intcodeComputer(currentConfigruation[3], amplifierC, currentPositionD, textArray) as [number, number];
-      [amplifierE, currentPositionE] = intcodeComputer(currentConfigruation[4], amplifierD, currentPositionE, textArray) as [number, number];
+      [[amplifierA, currentPositionA]] = intcodeComputer(currentConfigruation[0], 0,          currentPositionA, textArray) as Array<[number, number]>;
+      [[amplifierB, currentPositionB]] = intcodeComputer(currentConfigruation[1], amplifierA, currentPositionB, textArray) as Array<[number, number]>;
+      [[amplifierC, currentPositionC]] = intcodeComputer(currentConfigruation[2], amplifierB, currentPositionC, textArray) as Array<[number, number]>;
+      [[amplifierD, currentPositionD]] = intcodeComputer(currentConfigruation[3], amplifierC, currentPositionD, textArray) as Array<[number, number]>;
+      [[amplifierE, currentPositionE]] = intcodeComputer(currentConfigruation[4], amplifierD, currentPositionE, textArray) as Array<[number, number]>;
       firstLoopFlag = false;
     } else {
-      [amplifierA, currentPositionA] = intcodeComputer(amplifierE, amplifierE, currentPositionA, textArray) as [number, number];
-      [amplifierB, currentPositionB] = intcodeComputer(amplifierA, amplifierA, currentPositionB, textArray) as [number, number];
-      [amplifierC, currentPositionC] = intcodeComputer(amplifierB, amplifierB, currentPositionC, textArray) as [number, number];
-      [amplifierD, currentPositionD] = intcodeComputer(amplifierC, amplifierC, currentPositionD, textArray) as [number, number];
-      [amplifierE, currentPositionE] = intcodeComputer(amplifierD, amplifierD, currentPositionE, textArray) as [number, number];
+      [[amplifierA, currentPositionA]] = intcodeComputer(amplifierE, amplifierE, currentPositionA, textArray) as Array<[number, number]>;
+      [[amplifierB, currentPositionB]] = intcodeComputer(amplifierA, amplifierA, currentPositionB, textArray) as Array<[number, number]>;
+      [[amplifierC, currentPositionC]] = intcodeComputer(amplifierB, amplifierB, currentPositionC, textArray) as Array<[number, number]>;
+      [[amplifierD, currentPositionD]] = intcodeComputer(amplifierC, amplifierC, currentPositionD, textArray) as Array<[number, number]>;
+      [[amplifierE, currentPositionE]] = intcodeComputer(amplifierD, amplifierD, currentPositionE, textArray) as Array<[number, number]>;
     }
     if (Number.isInteger(amplifierE)) {
       amplifierOutputsPartTwo[index] = amplifierE;
