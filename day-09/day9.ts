@@ -38,5 +38,5 @@ console.log(
 
 // Print the BOOST keycode of the intcode program when an input 2 is used
 console.log(
-  `The BOOST keycode after executing the program with input value of 5 is ${answerPartTwo}.`
+  `The BOOST keycode after executing the program with input value of 2 is ${answerPartTwo}.`
 );
